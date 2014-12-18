@@ -29,13 +29,12 @@ lines = []
 for i in 2 .. rows.count - 1 
 	row = rows[i]
 
-
 	break if row.count < 15
 
 	line = {"type" => "Feature", 
 			"id" => i - 1,
 			"properties" => {
-				"HID" => 1000 + i - 1,  
+				"HID" => (1000 + i - 1).to_s,  
 				"Type" => "認可保育所",
 				"Kodomo" => nil,
 				"Name" => row[2],
@@ -43,29 +42,31 @@ for i in 2 .. rows.count - 1
 				"AgeS" => nil,
 				"AgeE" => nil,
 				"Full" => row[3],
-				"Open" => row[8],
-				"Close" => row[8],
-				"Memo" => row[9],
-				"Extra" => nil,
+				"Open" => row[8].split("～")[0],
+				"Close" => row[8].split("～")[1],
+				"H24" => nil,
+				"Memo" => "延長保育 : #{row[10]}",
+				"Extra" => "1",
 				"Temp" => nil,
 				"Holiday" => nil,
 				"Night" => nil,
 				"Add1" => row[4],
-				"Add2" => nil,
+				"Add2" => "",
 				"TEL" => row[7],
 				"FAX" => nil,
 				"Owner" => nil,
-				"Ownership" => nil,
+				"Ownership" => row[0],
 				"Proof" => nil,
 				"Shanai" => nil,
 				"Y" => row[5],
 				"X" => row[6],
 				"url" => row[14],
+				"Vacancy" => nil,
 				"VacancyDate" => nil
 			},
 			"geometry" => {
 				"type" => "Point",
-				"coordinates" => [row[6], row[5]]
+				"coordinates" => [row[6].to_f, row[5].to_f]
 			}
 	}
 

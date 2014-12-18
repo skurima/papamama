@@ -179,6 +179,7 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
         })
     );
     // 認可
+    console.log(facilitiesData);
     this.map.addLayer(
         new ol.layer.Vector({
             source: new ol.source.GeoJSON({
